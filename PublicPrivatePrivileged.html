@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style></style>
+<script type="text/javascript">
+function Container(){
+	this.memberVar = "Welcome";
+	var that = this;
+	function privateFunc (){
+		var pm = that.memberVar + " Private Method!!";
+		return pm;
+	}
+	
+	var jsTxt = "Javascript!!!";
+	this.privilegedMethod = function (){
+		alert(this.memberVar +" "+ privateFunc() + "From Privileged Method!!");
+	}
+}
+
+Container.prototype.protoMethod = function (){
+	alert("Called method added thru Prototype!!");
+}
+
+var containerInstance = new Container();
+alert(containerInstance.memberVar);
+containerInstance.privilegedMethod();
+containerInstance.protoMethod();
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body></body>
+<script>
+window.onload = function () {
+	var singletonClass = (function(){
+	
+    function SingletonClass() {
+		var func = function (a, b){
+			return a+b;
+		}
+		return func;
+    }
+    var instance;
+    return {
+        getInstance: function(){
+            if (instance == null) {
+                instance = new SingletonClass();
+                // Hide the constructor so the returned objected can't be new'd...
+                //instance.constructor = null;
+            }
+            return instance;
+        }
+   };
+})();
+
+var firstObj = singletonClass.getInstance();
+alert(firstObj(1, 2));
+var secondObj = new firstObj.constructor;
+alert(secondObj(5, 6));
+var thirdObj = secondObj;
+}
+
+</script>
+</html>
